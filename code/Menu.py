@@ -23,6 +23,7 @@ class Menu:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(50, "Mountain", C_ORANGE, ((WIN_WIDTH / 2), 70))
             self.menu_text(50, "Shooter", C_ORANGE, ((WIN_WIDTH / 2), 120))
+            self.menu_text_bottom(20, "Patrick Alves Santos RU:4325092", C_WHITE)
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
