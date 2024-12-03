@@ -23,7 +23,15 @@ class Menu:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(50, "Mountain", C_ORANGE, ((WIN_WIDTH / 2), 70))
             self.menu_text(50, "Shooter", C_ORANGE, ((WIN_WIDTH / 2), 120))
-            self.menu_text_bottom(13, "Patrick Alves Santos RU:4325092", C_WHITE)
+            bottom_texts = [
+                "Patrick Alves Santos RU:4325092",
+                "Guilherme Araújo de Barros RU:4390675",
+                "Jeniffer Cardoso Procopio RU:4408142",
+                "Brenda dos Santos Gonçalves RU:4500553",
+            ]
+            line_spacing = 15
+            for index, text in enumerate(bottom_texts):
+                self.menu_text_bottom(11, text, C_WHITE, line_spacing * index)
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
@@ -56,11 +64,11 @@ class Menu:
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(center=text_center_pos)
         self.window.blit(source=text_surf, dest=text_rect)
-
-    def menu_text_bottom(self, text_size: int, text: str, text_color: tuple):
+    #Posiciona o texto na parte de baixo
+    def menu_text_bottom(self, text_size: int, text: str, text_color: tuple, offset: int):
         text_font: Font = pygame.font.SysFont(name="Helvetica", size=text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
-        window_height = self.window.get_height()
-        # Position the text in the bottom-left corner
-        text_rect: Rect = text_surf.get_rect(topleft=(10, window_height - text_surf.get_height() - 10))
+        window_width = self.window.get_width()
+        # Posiciona o texto no canto superior direito
+        text_rect: Rect = text_surf.get_rect(bottomright=(window_width - 10, self.window.get_height() - 10 - offset))
         self.window.blit(source=text_surf, dest=text_rect)
