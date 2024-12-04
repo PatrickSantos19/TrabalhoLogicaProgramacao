@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from random import choice
-from code.Const import ENTITY_SPEED, ENTITY_SHOT_DELAY, WIN_HEIGHT
+from code.Const import ENTITY_SPEED, ENTITY_SHOT_DELAY, WIN_HEIGHT, WIN_WIDTH
 from code.EnemyShot import EnemyShot
 from code.Entity import Entity
 
@@ -16,10 +16,8 @@ class Enemy(Entity):
     def move(self):
         self.rect.centerx -= ENTITY_SPEED[self.name]
         if self.name == 'Enemy3':
-            if self.rect.bottom >= WIN_HEIGHT:
-                self.vertical_speed = ENTITY_SPEED[self.name]
-            elif self.rect.top <= 0:
-                self.vertical_speed = 2 * ENTITY_SPEED[self.name]
+            if self.rect.bottom >= WIN_HEIGHT or self.rect.top <= 0:
+                self.vertical_speed = -self.vertical_speed  # Inverta a direção
 
         self.rect.centery += self.vertical_speed
 
