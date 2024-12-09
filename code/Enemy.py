@@ -16,8 +16,10 @@ class Enemy(Entity):
     def move(self):
         self.rect.centerx -= ENTITY_SPEED[self.name]
         if self.name == 'Enemy3':
-            if self.rect.bottom >= WIN_HEIGHT or self.rect.top <= 0:
-                self.vertical_speed = -self.vertical_speed  # Inverta a direção
+            if self.rect.bottom >= WIN_HEIGHT:
+                self.vertical_speed = -ENTITY_SPEED[self.name]  # Subir com velocidade normal
+            elif self.rect.top <= 0:
+                self.vertical_speed = 2 * ENTITY_SPEED[self.name]  # Descer com o dobro da velocidade
 
         self.rect.centery += self.vertical_speed
 
